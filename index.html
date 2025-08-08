@@ -230,6 +230,19 @@
             margin: 10px 0;
             font-weight: bold;
             box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+            line-height: 1.6;
+            animation: highlightPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes highlightPulse {
+            0%, 100% { 
+                transform: scale(1);
+                box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+            }
+            50% { 
+                transform: scale(1.05);
+                box-shadow: 0 8px 25px rgba(59, 130, 246, 0.5);
+            }
         }
 
         .features {
@@ -613,8 +626,8 @@
                 <li><span class="process-task">Final Cut Proで編集</span><span class="process-time">（4〜5時間）</span></li>
                 <li><span class="process-task">Claude CodeとRemotionで字幕編集</span><span class="process-time">（30分）</span></li>
             </ol>
-            <div style="text-align: center; margin-top: 30px;">
-                <span class="highlight">従来なら数百万円かかるMVを1〜2万円で制作可能！</span>
+            <div style="text-align: center; margin: 40px 0;">
+                <span class="highlight" style="font-size: 1.3rem; padding: 15px 30px;">従来なら数百万円かかるMVを<br>1〜2万円で制作可能！</span>
             </div>
         </div>
 
