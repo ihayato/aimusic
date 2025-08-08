@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI音楽サロン - 誰もが音楽クリエイターになれる時代へ</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background: #f8f9fa;
+            min-height: 100vh;
+            margin: 0;
+            padding-top: 80px;
+        }
+
+        .global-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            padding: 15px 0;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .site-title {
+            margin: 0;
+            font-size: 1.8rem;
+            color: #2563eb;
+            font-weight: 700;
+        }
+
+        .header-cta {
+            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .header-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+        }
+
+        .hero-wrapper {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            background: #f8f9fa;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            opacity: 0.3;
+            position: relative;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .hero-overlay h1 {
+            font-size: clamp(2rem, 8vw, 5rem);
+            margin-bottom: 30px;
+            color: #2563eb;
+            text-shadow: 3px 3px 6px rgba(255,255,255,0.8), -1px -1px 2px rgba(255,255,255,0.8);
+            font-weight: 900;
+            line-height: 1.2;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .hero-overlay p {
+            color: #1e40af;
+            font-size: clamp(1.3rem, 4vw, 2.5rem);
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.8), -1px -1px 2px rgba(255,255,255,0.8);
+            font-weight: bold;
+            animation: fadeIn 1.2s ease-out;
+        }
+
+        .hero-cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+            color: white;
+            padding: clamp(15px, 3vw, 25px) clamp(30px, 6vw, 70px);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            margin: 30px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 15px 30px rgba(59, 130, 246, 0.4);
+            animation: heroButtonPulse 2s infinite;
+        }
+
+        @keyframes heroButtonPulse {
+            0% { transform: scale(1); box-shadow: 0 15px 30px rgba(59, 130, 246, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 20px 40px rgba(59, 130, 246, 0.6); }
+            100% { transform: scale(1); box-shadow: 0 15px 30px rgba(59, 130, 246, 0.4); }
+        }
+
+        .hero-cta-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.6);
+        }
+
+        @keyframes glow {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.2); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section {
+            background: white;
+            border-radius: 20px;
+            padding: clamp(20px, 5vw, 40px);
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e5e7eb;
+            animation: slideUp 0.8s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .video-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            margin: 20px 0;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 25px;
+            display: inline-block;
+            margin: 10px 0;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .features {
+            list-style: none;
+            padding: 0;
+        }
+
+        .features li {
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-left: 35px;
+        }
+
+        .features li:before {
+            content: "🎵";
+            position: absolute;
+            left: 0;
+            font-size: 1.5rem;
+            animation: bounce 2s infinite;
+        }
+
+        .process-list {
+            list-style: none;
+            padding: 0;
+            counter-reset: process-counter;
+        }
+
+        .process-list li {
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-left: 50px;
+            counter-increment: process-counter;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .process-list li:before {
+            content: counter(process-counter);
+            position: absolute;
+            left: 0;
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .process-task {
+            flex: 1;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .process-time {
+            color: #dc2626;
+            font-weight: bold;
+            margin-left: 20px;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .spotify-embed {
+            margin: 30px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .price-section {
+            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+            color: white;
+            text-align: center;
+            padding: clamp(30px, 6vw, 50px) clamp(20px, 5vw, 40px);
+            border-radius: 20px;
+            margin: 40px 0;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+        }
+
+        .price {
+            font-size: 4rem;
+            font-weight: bold;
+            margin: 20px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #2563eb;
+            padding: 20px 60px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.3rem;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.2);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .daily-price-highlight {
+            background: rgba(255, 255, 255, 0.2);
+            border: 3px solid white;
+            border-radius: 20px;
+            padding: 20px 40px;
+            margin: 30px auto;
+            display: inline-block;
+            animation: shake 2s ease-in-out infinite;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-2deg); }
+            75% { transform: rotate(2deg); }
+        }
+
+        .daily-price-label {
+            font-size: 1.2rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .daily-price-amount {
+            font-size: 3rem;
+            font-weight: bold;
+            display: block;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            margin: 10px 0;
+        }
+
+        .daily-price-text {
+            font-size: 1.2rem;
+            display: block;
+            margin-top: 10px;
+        }
+
+        .note {
+            background: #eff6ff;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border-left: 5px solid #3b82f6;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            color: #6b7280;
+        }
+
+        .owner-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e5e7eb 100%);
+            border: 2px solid #3b82f6;
+        }
+
+        .owner-profile {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .owner-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid #3b82f6;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+        }
+
+        .owner-info {
+            flex: 1;
+        }
+
+        .owner-name {
+            font-size: 2rem;
+            color: #2563eb;
+            margin-bottom: 10px;
+        }
+
+        .owner-title {
+            font-size: 1.2rem;
+            color: #6b7280;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .owner-description p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+            color: #4b5563;
+        }
+
+        .emphasis-text {
+            text-align: center;
+            padding: clamp(40px, 8vw, 60px) 20px;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            line-height: 1.6;
+            color: #1e293b;
+            font-weight: bold;
+        }
+
+        .emphasis-name {
+            color: #3b82f6;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 900;
+            text-shadow: 2px 2px 4px rgba(59, 130, 246, 0.2);
+        }
+
+        .emphasis-time {
+            color: #dc2626;
+            font-size: clamp(2.5rem, 6vw, 3.5rem);
+            font-weight: 900;
+            text-shadow: 2px 2px 4px rgba(220, 38, 38, 0.2);
+        }
+
+        .emphasis-solo {
+            color: #7c3aed;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 900;
+            text-shadow: 2px 2px 4px rgba(124, 58, 237, 0.2);
+        }
+
+        .emphasis-mv {
+            color: #059669;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 900;
+            text-shadow: 2px 2px 4px rgba(5, 150, 105, 0.2);
+        }
+
+        .video-intro {
+            text-align: center;
+            padding: 40px 20px;
+            font-size: clamp(1.3rem, 3.5vw, 2rem);
+            line-height: 1.6;
+            color: #1e293b;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 70px;
+            }
+            .site-title {
+                font-size: 1.3rem;
+            }
+            .header-cta {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+            .hero-wrapper {
+                min-height: 50vh;
+            }
+            .hero-image {
+                min-height: 50vh;
+                object-fit: cover;
+            }
+            .hero-overlay h1 {
+                font-size: 2rem;
+                margin-bottom: 20px;
+            }
+            .hero-overlay p {
+                font-size: 1.3rem;
+                margin-bottom: 30px;
+            }
+            .hero-cta-button {
+                padding: 18px 40px;
+                font-size: 1.1rem;
+                margin: 20px 0;
+            }
+            .price {
+                font-size: 3rem;
+            }
+            .cta-button {
+                padding: 15px 40px;
+                font-size: 1.1rem;
+            }
+            .owner-profile {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+            .owner-avatar {
+                width: 120px;
+                height: 120px;
+            }
+            .owner-name {
+                font-size: 1.5rem;
+            }
+            .owner-title {
+                font-size: 1rem;
+            }
+            .emphasis-text {
+                font-size: 1.8rem;
+                padding: 40px 20px;
+            }
+            .emphasis-name, .emphasis-solo, .emphasis-mv {
+                font-size: 2rem;
+            }
+            .emphasis-time {
+                font-size: 2.5rem;
+            }
+            .video-intro {
+                font-size: 1.5rem;
+                padding: 30px 20px;
+            }
+            .process-list li {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            .process-time {
+                margin-left: 0;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="global-header">
+        <div class="header-container">
+            <div class="header-logo">
+                <h1 class="site-title">AI音楽サロン</h1>
+            </div>
+            <a href="https://mag.ikehaya.com/p/r/1jftzOeR" class="header-cta">参加する</a>
+        </div>
+    </header>
+    <div class="hero-wrapper">
+        <img src="kv2.png" alt="AI音楽サロン" class="hero-image">
+        <div class="hero-overlay">
+            <h1>——「音楽制作」は<br>完全に民主化された。</h1>
+            <p>あなたの理想を<br>かたちにしよう！</p>
+            <a href="https://mag.ikehaya.com/p/r/1jftzOeR" class="hero-cta-button">今すぐ参加する（¥980）</a>
+        </div>
+    </div>
+    <div class="container">
+
+        <div class="video-intro">
+            <p>30秒、時間をください。<br>この動画を見てください。</p>
+        </div>
+
+        <div class="section video-section">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/SgoJwQBOcLU" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <div class="emphasis-text">
+            <p>これは<span class="emphasis-name">イケハヤ</span>が<br>
+            <span class="emphasis-time">約10時間</span>で<br>
+            <span class="emphasis-solo">たった一人で</span><br>
+            作った<span class="emphasis-mv">MV</span>です</p>
+        </div>
+
+        <div class="section">
+            <h2 style="margin-bottom: 20px;">驚きの制作プロセス</h2>
+            <ol class="process-list">
+                <li><span class="process-task">Sunoで楽曲を制作</span><span class="process-time">（1〜2時間）</span></li>
+                <li><span class="process-task">SoraとVeo3で動画生成</span><span class="process-time">（4〜5時間）</span></li>
+                <li><span class="process-task">Final Cut Proで編集</span><span class="process-time">（4〜5時間）</span></li>
+                <li><span class="process-task">Claude CodeとRemotionで字幕編集</span><span class="process-time">（30分）</span></li>
+            </ol>
+            <div style="text-align: center; margin-top: 30px;">
+                <span class="highlight">従来なら数百万円かかるMVを1〜2万円で制作可能！</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 style="margin-bottom: 20px;">AI音楽サロンとは</h2>
+            <p>AIで誰もが簡単に高品質な音楽、ミュージックビデオを作れる時代。</p>
+            <p>「AI音楽サロン」はみんなでワイワイ制作を楽しむ場です。</p>
+            
+            <ul class="features" style="margin-top: 20px;">
+                <li>最新のツールの紹介</li>
+                <li>みんなでMVを作る企画も実施</li>
+                <li>イケハヤも含めて、誰もが初心者です</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2 style="margin-bottom: 20px; text-align: center;">AI音楽は配信も可能！</h2>
+            <p style="text-align: center; font-size: 1.2rem; line-height: 1.8; margin-bottom: 30px;">
+                AI音楽はApple Music、YouTube Music、Spotifyなどでも配信可能！<br>
+                1再生あたり0.5〜1円程度の収益を得ることができます。<br>
+                あなたの音楽がヒットしたら、副業収益にもなります！
+            </p>
+            <div class="spotify-embed">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/6Q1fGiu6jhBF5v2WYFIKcU?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            </div>
+        </div>
+
+        <div class="price-section">
+            <h2 style="font-size: 2.5rem; margin-bottom: 20px;">期間限定特別価格</h2>
+            <div class="price">¥980</div>
+            <p style="font-size: 1.2rem; margin-bottom: 30px;">買い切り価格（値上げ予定）</p>
+            
+            <div class="daily-price-highlight">
+                <span class="daily-price-label">1日あたり</span>
+                <span class="daily-price-amount" id="dailyPrice">¥2.6</span>
+                <span class="daily-price-text">で参加できる！</span>
+            </div>
+            
+            <p style="font-size: 1.1rem; margin: 20px 0; opacity: 0.9;">
+                運営期間：2025年8月8日〜2026年8月31日<br>
+                <span id="remainingDays"></span>
+            </p>
+            
+            <a href="https://mag.ikehaya.com/p/r/1jftzOeR" class="cta-button">今すぐ参加する</a>
+            <p style="margin-top: 20px;">月額制ではありません</p>
+        </div>
+
+        <div class="section">
+            <h3 style="margin-bottom: 15px;">サロンの特徴</h3>
+            <ul class="features">
+                <li>あなたの挑戦を応援するために超安価設定</li>
+                <li>現在リリース直後の特別価格</li>
+                <li>一緒にサロンを作り上げてくれる仲間を募集中</li>
+                <li>高額なバックエンドなどは一切ありません</li>
+                <li>ミニ教材の割引販売あり</li>
+                <li>1年間の運営を予定</li>
+            </ul>
+        </div>
+
+        <div class="section owner-section">
+            <h2 style="font-size: 2rem; margin-bottom: 30px; text-align: center;">サロンオーナー紹介</h2>
+            <div class="owner-profile">
+                <img src="profile.png" alt="イケハヤ" class="owner-avatar">
+                <div class="owner-info">
+                    <h3 class="owner-name">イケハヤ</h3>
+                    <p class="owner-title">起業家・投資家・ビジネス書作家</p>
+                    <div class="owner-description">
+                        <p>大学卒業後、IT企業での勤務を経て独立。</p>
+                        <p>総フォロワー数80万人を超える、ビジネス系インフルエンサーとしても活動中。著書多数。</p>
+                        <p>「ブログで稼ぐ」「ビジネス系YouTuber」「NFT」など、最先端のビジネストレンドを次々と先取り。仮想通貨投資でも早期参入者として成功を収める。</p>
+                        <p>現在はAIをフル活用しつつ、IP事業「クリプトニンジャ」にコミットし、早期のテレビアニメ化も実現。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="note">
+            <h3 style="margin-bottom: 10px;">注意点</h3>
+            <ul style="padding-left: 20px;">
+                <li>Discordアカウントが必須</li>
+                <li>音楽を作るだけならスマホ・タブレットでもOK</li>
+                <li>MV作りまでやる場合は動画編集ができるスペックのパソコン推奨</li>
+            </ul>
+        </div>
+
+        <div style="text-align: center; margin: 40px 0;">
+            <h2 style="margin-bottom: 30px;">あなたの参加をお待ちしています</h2>
+            <a href="https://mag.ikehaya.com/p/r/1jftzOeR" class="cta-button">AI音楽サロンに参加する</a>
+        </div>
+
+        <div class="footer">
+            <p>© 2025 AI音楽サロン</p>
+        </div>
+    </div>
+    <script>
+        // Calculate daily price and remaining days
+        const startDate = new Date('2025-08-08');
+        const endDate = new Date('2026-08-31');
+        const today = new Date();
+        
+        // Calculate total days in the period
+        const totalDays = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
+        
+        // Calculate remaining days from today
+        const remainingDays = Math.ceil((endDate - today) / (1000 * 60 * 60 * 24));
+        
+        // Calculate daily price
+        const dailyPrice = (980 / totalDays).toFixed(1);
+        
+        // Update the display
+        document.getElementById('dailyPrice').textContent = `¥${dailyPrice}`;
+        
+        if (remainingDays > 0) {
+            document.getElementById('remainingDays').textContent = `残り${remainingDays}日間楽しめます！`;
+        }
+    </script>
+</body>
+</html>
