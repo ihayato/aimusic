@@ -419,6 +419,78 @@
             color: #6b7280;
         }
 
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .carousel-wrapper {
+            overflow: hidden;
+            border-radius: 15px;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            padding: 0 10px;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(59, 130, 246, 0.8);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .carousel-btn:hover {
+            background: rgba(59, 130, 246, 1);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-btn-prev {
+            left: 20px;
+        }
+
+        .carousel-btn-next {
+            right: 20px;
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #cbd5e1;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-dot.active {
+            background: #3b82f6;
+            transform: scale(1.2);
+        }
+
         .owner-section {
             background: linear-gradient(135deg, #f8f9fa 0%, #e5e7eb 100%);
             border: 2px solid #3b82f6;
@@ -583,6 +655,20 @@
                 margin-left: 0;
                 font-size: 0.9rem;
             }
+            .carousel-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1.5rem;
+            }
+            .carousel-btn-prev {
+                left: 10px;
+            }
+            .carousel-btn-next {
+                right: 10px;
+            }
+            .carousel-slide {
+                padding: 0 5px;
+            }
         }
     </style>
 </head>
@@ -633,6 +719,35 @@
             <div style="text-align: center; margin: 40px 0;">
                 <span class="highlight" style="font-size: 1.3rem; padding: 15px 30px;">従来なら数百万円かかるMVを<br>1〜2万円で制作可能！</span>
             </div>
+        </div>
+
+        <div class="section">
+            <h2 style="margin-bottom: 20px; text-align: center;">その他の作例</h2>
+            <div class="carousel-container">
+                <div class="carousel-wrapper">
+                    <div class="carousel-track">
+                        <div class="carousel-slide">
+                            <div class="video-container">
+                                <iframe src="https://www.youtube.com/embed/jJwOfds5Tf4" frameborder="0" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="video-container">
+                                <iframe src="https://www.youtube.com/embed/Vq0iTy_hxGY" frameborder="0" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-btn carousel-btn-prev" onclick="moveCarousel(-1)">‹</button>
+                <button class="carousel-btn carousel-btn-next" onclick="moveCarousel(1)">›</button>
+                <div class="carousel-dots">
+                    <span class="carousel-dot active" onclick="goToSlide(0)"></span>
+                    <span class="carousel-dot" onclick="goToSlide(1)"></span>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 30px; font-size: 1.1rem; color: #4b5563;">
+                これらのMVも、すべてイケハヤが自作してます
+            </p>
         </div>
 
         <div class="section">
@@ -750,6 +865,46 @@
         if (remainingDays > 0) {
             document.getElementById('remainingDays').textContent = `残り${remainingDays}日間楽しめます！`;
         }
+
+        // Carousel functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dots = document.querySelectorAll('.carousel-dot');
+        const track = document.querySelector('.carousel-track');
+
+        function updateCarousel() {
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function moveCarousel(direction) {
+            currentSlide = (currentSlide + direction + slides.length) % slides.length;
+            updateCarousel();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+        }
+
+        // Touch/swipe support for mobile
+        let startX = 0;
+        let endX = 0;
+
+        track.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+        });
+
+        track.addEventListener('touchend', (e) => {
+            endX = e.changedTouches[0].clientX;
+            if (startX - endX > 50) {
+                moveCarousel(1);
+            } else if (endX - startX > 50) {
+                moveCarousel(-1);
+            }
+        });
     </script>
 </body>
 </html>
