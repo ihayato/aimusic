@@ -269,6 +269,120 @@
             animation: bounce 2s infinite;
         }
 
+        .ai-music-section {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border: 2px solid #3b82f6;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ai-music-section::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .process-item {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .process-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.15);
+        }
+
+        .process-title {
+            color: #1e40af;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .process-description {
+            color: #4b5563;
+            line-height: 1.7;
+        }
+
+        .monetize-section {
+            background: linear-gradient(135deg, #fefce8 0%, #fef3c7 100%);
+            border: 2px solid #f59e0b;
+        }
+
+        .monetize-item {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 25px 0;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .monetize-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+        }
+
+        .monetize-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .monetize-number {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .monetize-title {
+            color: #1e40af;
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            padding-right: 60px;
+        }
+
+        .monetize-content {
+            color: #4b5563;
+            line-height: 1.8;
+        }
+
+        .monetize-highlight {
+            background: #fef3c7;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            color: #b45309;
+        }
+
         .process-list {
             list-style: none;
             padding: 0;
@@ -685,7 +799,7 @@
         <img src="kv2.png" alt="ＡＩ音楽サロン" class="hero-image">
         <div class="hero-overlay">
             <h1>——「音楽制作」は<br>完全に民主化された。</h1>
-            <p>あなたの理想を<br>かたちにしよう！</p>
+            <p>1200人以上が参加！<br>業界最大のサロンで学ぼう！</p>
             <a href="https://mag.ikehaya.com/p/r/1jftzOeR" class="hero-cta-button">今すぐ参加する（¥980）</a>
         </div>
     </div>
@@ -762,32 +876,90 @@
             </p>
         </div>
 
-        <div class="section">
-            <h2 style="margin-bottom: 20px;">ＡＩ音楽サロンとは</h2>
-            <p>AIで誰もが簡単に高品質な音楽、ミュージックビデオを作れる時代。</p>
-            <p>「AI音楽サロン」はみんなでワイワイ制作を楽しむ場です。</p>
+        <div class="section ai-music-section">
+            <h2 style="margin-bottom: 30px; text-align: center; font-size: 2.2rem; color: #1e40af;">今一番おすすめの副業は「AI音楽」</h2>
+            <p style="text-align: center; margin-bottom: 30px; font-size: 1.3rem; font-weight: bold; color: #3b82f6;">AI音楽は「AI活用の総合格闘技」とも言える、高度な領域です。</p>
             
-            <ul class="features" style="margin-top: 20px;">
-                <li>最新のツールの紹介</li>
-                <li>みんなでMVを作る企画も実施</li>
-                <li>イケハヤも含めて、誰もが初心者です</li>
-            </ul>
+            <div class="process-item">
+                <div class="process-title">🎤 作詞・コンセプト設計</div>
+                <div class="process-description">ChatGPTのようなAIと対話しながら、楽曲のテーマや歌詞を生み出していく、クリエイティブな作業です。</div>
+            </div>
+            
+            <div class="process-item">
+                <div class="process-title">🎵 作曲・編集</div>
+                <div class="process-description">ぼくは「Suno AI」を主に使っていますが、他にも様々なAI作曲ツールがあります。<br>
+                出力されたものを選び（キュレーション）、時には編集を加えるセンスも問われます。</div>
+            </div>
+            
+            <div class="process-item">
+                <div class="process-title">🎨 画像・動画生成</div>
+                <div class="process-description">歌詞の世界観に合わせた画像を「Nano-banana」などで生成し、それを「Midjourney」や「Kling」「Wan」といったツールで動画化していきます。<br>
+                3〜4分のフル尺MVを作るのはけっこう大変ですが、根性です！</div>
+            </div>
+            
+            <div class="process-item">
+                <div class="process-title">🎬 動画編集</div>
+                <div class="process-description">生成した動画素材をつなぎ合わせ、一つの作品に仕上げていきます。<br>
+                この編集部分は、まだまだAIが介入しづらい領域で、自分の手でゴリゴリ作業することになります。</div>
+            </div>
+            
+            <div class="process-item">
+                <div class="process-title">📝 字幕</div>
+                <div class="process-description">最後に字幕を付けます。ぼくのおすすめは「Remotion」を使う方法です。ここではバイブコーディングのスキルが求められます。</div>
+            </div>
+            
+            <p style="margin-top: 30px; text-align: center; font-size: 1.3rem; font-weight: bold; color: #1e40af;">楽しみながらAIスキルを習得！さらに収益化のチャンスも</p>
+        </div>
+
+        <div class="section monetize-section">
+            <h2 style="margin-bottom: 30px; text-align: center; font-size: 2.2rem; color: #b45309;">💰 マネタイズはどうやるの？</h2>
+            
+            <div class="monetize-item">
+                <div class="monetize-number">1</div>
+                <div class="monetize-title">ストリーミング収益</div>
+                <div class="monetize-content">
+                    Spotify、Apple Music、YouTube Musicなどで配信することで、<span class="monetize-highlight">1再生あたり0.4〜1円程度</span>の収益を得ることができます。<br><br>
+                    サロンメンバーのなかには、日本語曲の配信で<span class="monetize-highlight">月3万円以上</span>稼いでいる猛者も。<br><br>
+                    あなたのこだわりたっぷりの楽曲が、お金を稼いでくれる。そんな感動も目指してみてください！
+                </div>
+            </div>
+            
+            <div class="monetize-item">
+                <div class="monetize-number">2</div>
+                <div class="monetize-title">ミュージックビデオ収益</div>
+                <div class="monetize-content">
+                    AI音楽サロンでは、ミュージックビデオの制作も強くおすすめしています。<br><br>
+                    サロン内では、AI動画に関する情報も多く共有されています。<br><br>
+                    ビデオをYouTubeなどに投稿すれば、通常の動画と同様、収益も期待できます。
+                </div>
+            </div>
+            
+            <div class="monetize-item">
+                <div class="monetize-number">3</div>
+                <div class="monetize-title">クライアントワーク</div>
+                <div class="monetize-content">
+                    <strong style="color: #dc2626;">AI音楽をおすすめするのは、実はここ！</strong><br><br>
+                    ミュージックビデオまで作れるようになれば、あなたはもうAI活用を相当極めています。<br><br>
+                    たとえば<span class="monetize-highlight">広告動画の制作</span>や、<span class="monetize-highlight">AI系のYouTubeチャンネルの編集</span>に関わることもできます。<br><br>
+                    もちろん自分でチャンネルを作るのも可能です。<br><br>
+                    AIを活用した、次世代のコンテンツ制作にぜひ挑戦してください！
+                </div>
+            </div>
         </div>
 
         <div class="section">
-            <h2 style="margin-bottom: 20px; text-align: center;">ＡＩ音楽は配信も可能！</h2>
-            <p style="text-align: center; font-size: 1.2rem; line-height: 1.8; margin-bottom: 30px;">
-                ＡＩ音楽はApple Music、YouTube Music、Spotifyなどでも配信可能！<br>
-                1再生あたり0.5〜1円程度の収益を得ることができます。<br>
-                あなたの音楽がヒットしたら、副業収益にもなります！
-            </p>
+            <h2 style="margin-bottom: 20px; text-align: center; font-size: 2rem; color: #1e40af;">あなたの楽曲が世界に配信されます！</h2>
+            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 30px;">自分の楽曲がApple MusicやSpotifyに配信される感動を体験してください！</p>
             <div class="spotify-embed">
-                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/6Q1fGiu6jhBF5v2WYFIKcU?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/album/5jKXnN88KLLCQuAv096LV0?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            </div>
+            <div style="margin-top: 20px;">
+                <iframe height="450" width="100%" title="Media player" src="https://embed.music.apple.com/us/album/%E9%9B%BB%E6%B0%97%E7%BE%8A/1832536891?itscg=30200&amp;itsct=music_box_player&amp;ls=1&amp;app=music&amp;mttnsubad=1832536891&amp;theme=auto" id="embedPlayer" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation" allow="autoplay *; encrypted-media *; clipboard-write" style="border: 0px; border-radius: 12px; width: 100%; height: 450px; max-width: 660px;"></iframe>
             </div>
         </div>
 
         <div class="price-section">
-            <h2 style="font-size: 2.5rem; margin-bottom: 20px;">期間限定特別価格</h2>
+            <h2 style="font-size: 2.5rem; margin-bottom: 20px;">サロンメンバー募集中</h2>
             <div class="price">¥980</div>
             <p style="font-size: 1.2rem; margin-bottom: 30px;">買い切り価格（値上げ予定）</p>
             
@@ -803,20 +975,34 @@
             </p>
             
             <a href="https://mag.ikehaya.com/p/r/1jftzOeR" class="cta-button">今すぐ参加する</a>
-            <p style="margin-top: 20px;">月額制ではありません</p>
+            
+            <div style="margin-top: 40px; padding: 20px; background: rgba(255,255,255,0.3); border-radius: 15px;">
+                <h3 style="margin-bottom: 15px; color: white; font-size: 1.3rem; text-align: center;">参加する前にお読みください</h3>
+                <ul style="padding: 0; margin: 0; color: white; font-size: 1.1rem; list-style: none; text-align: left;">
+                    <li style="margin-bottom: 12px; display: flex; align-items: flex-start;">
+                        <span style="margin-right: 10px;">•</span>
+                        <span style="font-size: 1.3rem; font-weight: bold; text-decoration: underline; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);">月額制ではありません。一回限りの課金です</span>
+                    </li>
+                    <li style="margin-bottom: 8px; display: flex; align-items: flex-start;">
+                        <span style="margin-right: 10px;">•</span>
+                        <span>重複決済を除き、返金は原則的に対応していません</span>
+                    </li>
+                    <li style="margin-bottom: 8px; display: flex; align-items: flex-start;">
+                        <span style="margin-right: 10px;">•</span>
+                        <span>Discordアカウントが必須です</span>
+                    </li>
+                    <li style="margin-bottom: 8px; display: flex; align-items: flex-start;">
+                        <span style="margin-right: 10px;">•</span>
+                        <span>音楽を作るだけならスマホ・タブレットでもOKです</span>
+                    </li>
+                    <li style="display: flex; align-items: flex-start;">
+                        <span style="margin-right: 10px;">•</span>
+                        <span>MV作りまでやる場合は、動画編集ができるスペックのパソコンを用意しましょう！</span>
+                    </li>
+                </ul>
+            </div>
         </div>
 
-        <div class="section">
-            <h3 style="margin-bottom: 15px;">サロンの特徴</h3>
-            <ul class="features">
-                <li>あなたの挑戦を応援するために超安価設定</li>
-                <li>現在リリース直後の特別価格</li>
-                <li>一緒にサロンを作り上げてくれる仲間を募集中</li>
-                <li>高額なバックエンドなどは一切ありません</li>
-                <li>ミニ教材の割引販売あり</li>
-                <li>1年間の運営を予定</li>
-            </ul>
-        </div>
 
         <div class="section owner-section">
             <h2 style="font-size: 2rem; margin-bottom: 30px; text-align: center;">サロンオーナー紹介</h2>
@@ -835,14 +1021,6 @@
             </div>
         </div>
 
-        <div class="note">
-            <h3 style="margin-bottom: 10px;">注意点</h3>
-            <ul style="padding-left: 20px;">
-                <li>Discordアカウントが必須</li>
-                <li>音楽を作るだけならスマホ・タブレットでもOK</li>
-                <li>MV作りまでやる場合は動画編集ができるスペックのパソコン推奨</li>
-            </ul>
-        </div>
 
         <div style="text-align: center; margin: 40px 0;">
             <h2 style="margin-bottom: 30px;">あなたの参加をお待ちしています</h2>
