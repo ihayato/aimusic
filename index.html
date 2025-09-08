@@ -11,7 +11,7 @@
     
     <!-- OGP meta tags -->
     <meta property="og:title" content="ＡＩ音楽サロン - 誰もが音楽クリエイターになれる時代へ">
-    <meta property="og:description" content="AIで誰もが簡単に高品質な音楽・ミュージックビデオを作れる時代。たった980円で音楽制作の世界へ飛び込もう！">
+    <meta property="og:description" content="AIで誰もが簡単に高品質な音楽・ミュージックビデオを作れる時代。たった2980円で音楽制作の世界へ飛び込もう！">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://aimusic-six.vercel.app/ogp.png">
     <meta property="og:site_name" content="ＡＩ音楽サロン">
@@ -20,7 +20,7 @@
     <!-- Twitter Card meta tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="ＡＩ音楽サロン - 誰もが音楽クリエイターになれる時代へ">
-    <meta name="twitter:description" content="AIで誰もが簡単に高品質な音楽・ミュージックビデオを作れる時代。たった980円で音楽制作の世界へ飛び込もう！">
+    <meta name="twitter:description" content="AIで誰もが簡単に高品質な音楽・ミュージックビデオを作れる時代。たった2980円で音楽制作の世界へ飛び込もう！">
     <meta name="twitter:image" content="https://aimusic-six.vercel.app/ogp.png">
     <style>
         * {
@@ -799,8 +799,8 @@
         <img src="kv2.png" alt="ＡＩ音楽サロン" class="hero-image">
         <div class="hero-overlay">
             <h1>——「音楽制作」は<br>完全に民主化された。</h1>
-            <p>1200人以上が参加！<br>業界最大のサロンで学ぼう！</p>
-            <a href="https://mag.ikehaya.com/p/r/1jftzOeR" class="hero-cta-button">今すぐ参加する（¥980）</a>
+            <p>1600人以上が参加！<br>業界最大のサロンで学ぼう！</p>
+            <a href="https://mag.ikehaya.com/p/r/1jftzOeR" class="hero-cta-button">今すぐ参加する（¥2,980）</a>
         </div>
     </div>
     <div class="container">
@@ -860,6 +860,11 @@
                                 <iframe src="https://www.youtube.com/embed/Xv9I5mobrQ8" frameborder="0" allowfullscreen></iframe>
                             </div>
                         </div>
+                        <div class="carousel-slide">
+                            <div class="video-container">
+                                <iframe src="https://www.youtube.com/embed/1iin71lHAzM" frameborder="0" allowfullscreen></iframe>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <button class="carousel-btn carousel-btn-prev" onclick="moveCarousel(-1)">‹</button>
@@ -869,6 +874,7 @@
                     <span class="carousel-dot" onclick="goToSlide(1)"></span>
                     <span class="carousel-dot" onclick="goToSlide(2)"></span>
                     <span class="carousel-dot" onclick="goToSlide(3)"></span>
+                    <span class="carousel-dot" onclick="goToSlide(4)"></span>
                 </div>
             </div>
             <p style="text-align: center; margin-top: 30px; font-size: 1.1rem; color: #4b5563;">
@@ -958,14 +964,25 @@
             </div>
         </div>
 
+        <div class="section">
+            <h2 style="margin-bottom: 20px; text-align: center; font-size: 2rem; color: #1e40af;">こんなCM風動画も<br>簡単に作れるようになります！</h2>
+            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 30px; color: #4b5563;">Midjourney、Nano-bananaを使い、15分ほどで制作しています。<br>BGMは咲耶の楽曲です！</p>
+            <div class="video-container">
+                <video controls style="width: 100%; border-radius: 15px;">
+                    <source src="cm.mp4" type="video/mp4">
+                    お使いのブラウザは動画タグをサポートしていません。
+                </video>
+            </div>
+        </div>
+
         <div class="price-section">
             <h2 style="font-size: 2.5rem; margin-bottom: 20px;">サロンメンバー募集中</h2>
-            <div class="price">¥980</div>
-            <p style="font-size: 1.2rem; margin-bottom: 30px;">買い切り価格（値上げ予定）</p>
+            <div class="price">¥2,980</div>
+            <p style="font-size: 1.2rem; margin-bottom: 30px;">買い切り価格</p>
             
             <div class="daily-price-highlight">
                 <span class="daily-price-label">1日あたり</span>
-                <span class="daily-price-amount" id="dailyPrice">¥2.6</span>
+                <span class="daily-price-amount" id="dailyPrice">¥7.6</span>
                 <span class="daily-price-text">で参加できる！</span>
             </div>
             
@@ -1047,7 +1064,7 @@
         const remainingDays = Math.ceil((endDate - today) / (1000 * 60 * 60 * 24));
         
         // Calculate daily price
-        const dailyPrice = (980 / totalDays).toFixed(1);
+        const dailyPrice = (2980 / totalDays).toFixed(1);
         
         // Update the display
         document.getElementById('dailyPrice').textContent = `¥${dailyPrice}`;
